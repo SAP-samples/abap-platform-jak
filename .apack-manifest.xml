@@ -3,15 +3,15 @@
  <asx:values>
   <DATA>
    <GROUP_ID>sap.com</GROUP_ID>
-   <ARTIFACT_ID>jak</ARTIFACT_ID>
+   <ARTIFACT_ID>abap-platform-jak</ARTIFACT_ID>
    <VERSION>0.1</VERSION>
    <REPOSITORY_TYPE>abapGit</REPOSITORY_TYPE>
-   <GIT_URL>https://github.com/SebastianWolf-SAP/jak.git</GIT_URL>
+   <GIT_URL>https://github.com/SAP/abap-platform-jak.git</GIT_URL>
    <DEPENDENCIES>
     <item>
      <GROUP_ID>sap.com</GROUP_ID>
-     <ARTIFACT_ID>yy</ARTIFACT_ID>
-     <GIT_URL>https://github.com/SebastianWolf-SAP/yy.git</GIT_URL>
+     <ARTIFACT_ID>abap-platform-yy</ARTIFACT_ID>
+     <GIT_URL>https://github.com/SAP/abap-platform-yy.git</GIT_URL>
     </item>
    </DEPENDENCIES>
   </DATA>
