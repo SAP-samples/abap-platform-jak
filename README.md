@@ -10,7 +10,7 @@ Please make sure to fulfill the following requirements:
 * You have access to an SAP Cloud Platform ABAP Environment instance (see [here](https://blogs.sap.com/2018/09/04/sap-cloud-platform-abap-environment) for additional information)
 * You have downloaded and installed [ABAP Development Tools for SAP NetWeaver](https://tools.hana.ondemand.com/#abap) (ADT)
 * You have created an ABAP Cloud Project in ADT that allows you to access your SAP Cloud Platform ABAP Environment instance
-* You have installed the [abapGit](https://github.com/abapGit/eclipse.abapgit.org) plug-in for Eclipse via the updatesite `http://eclipse.abapgit.org/updatesite/`
+* You have installed the [abapGit](https://github.com/abapGit/eclipse.abapgit.org) plug-in for Eclipse [via the updatesite](https://eclipse.abapgit.org/updatesite/)
 * You have installed the [YY Data Service](https://github.com/SAP/abap-platform-yy) or run an ABAP instance which supports the APACK package and dependency manager. This will import the YY Data Service automatically when you import this project.
 
 ### Download and Installation
@@ -34,9 +34,6 @@ You have an ABAP data field ready to send out to the world as JSON - either dire
 
 ### Known Issues
 As mentioned before, after cloning a abapGit repository some objects might not be active. Use the mass activation feature in ADT to activate those artifacts.  
-
-### How to obtain support
-This project is provided "as-is": there is no guarantee that raised issues will be answered or addressed in future releases.
 
 ### License
 Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
