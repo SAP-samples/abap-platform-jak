@@ -4,7 +4,7 @@
   <DATA>
    <GROUP_ID>sap.com</GROUP_ID>
    <ARTIFACT_ID>abap-platform-jak</ARTIFACT_ID>
-   <VERSION>0.1</VERSION>
+   <VERSION>0.2</VERSION>
    <REPOSITORY_TYPE>abapGit</REPOSITORY_TYPE>
    <GIT_URL>https://github.com/SAP/abap-platform-jak.git</GIT_URL>
    <DEPENDENCIES>
