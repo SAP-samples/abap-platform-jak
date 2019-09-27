@@ -4,11 +4,9 @@
   <asx:values>
    <VSEOCLASS>
     <CLSNAME>ZCL_JAK_DATA_IN</CLSNAME>
-    <VERSION>1</VERSION>
     <LANGU>E</LANGU>
     <DESCRIPT>JAK: Incoming data representation</DESCRIPT>
     <STATE>1</STATE>
-    <CLSFINAL>X</CLSFINAL>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>
     <UNICODE>X</UNICODE>

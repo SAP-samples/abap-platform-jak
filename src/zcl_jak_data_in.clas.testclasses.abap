@@ -4,7 +4,8 @@ CLASS ltcl_jak_data_in DEFINITION FOR TESTING RISK LEVEL HARMLESS DURATION SHORT
     METHODS:
       smoke_test_http             FOR TESTING RAISING cx_static_check,
       smoke_test_json             FOR TESTING RAISING cx_static_check,
-      camel_underscore_conversion FOR TESTING RAISING cx_static_check.
+      camel_underscore_conversion FOR TESTING RAISING cx_static_check,
+      issue_2                     FOR TESTING RAISING cx_static_check.
 ENDCLASS.
 
 CLASS ltcl_jak_data_in IMPLEMENTATION.
@@ -59,7 +60,7 @@ CLASS ltcl_jak_data_in IMPLEMENTATION.
 
   METHOD camel_underscore_conversion.
     TYPES: BEGIN OF strange_structure,
-             rumpel_katze TYPE string,
+             rumpel_katze     TYPE string,
              nettes_haus_tier TYPE string,
            END OF strange_structure,
            strange_table TYPE TABLE OF strange_structure.
@@ -73,6 +74,45 @@ CLASS ltcl_jak_data_in IMPLEMENTATION.
     expected_data = VALUE #( ( rumpel_katze = 'Felix' nettes_haus_tier = 'Klar Doch!' )
                              ( rumpel_katze = 'Hugo' nettes_haus_tier = 'Eher nicht!' ) ).
     cl_abap_unit_assert=>assert_equals( exp = expected_data act = my_data ).
+  ENDMETHOD.
+
+  METHOD issue_2.
+
+    TYPES: BEGIN OF ty_addr,
+             bnm  TYPE string,
+             pncd TYPE string,
+           END OF ty_addr,
+           BEGIN OF Ty_adadr,
+             addr TYPE ty_addr,
+             ntr  TYPE STANDARD TABLE OF string WITH NON-UNIQUE DEFAULT KEY,
+           END OF ty_adadr,
+           BEGIN OF ty_something,
+             stj_cd TYPE string,
+             lgnm   TYPE string,
+             nba    TYPE STANDARD TABLE OF string WITH NON-UNIQUE DEFAULT KEY,
+             adadr  TYPE STANDARD TABLE OF ty_adadr WITH NON-UNIQUE DEFAULT KEY,
+             pradr  TYPE ty_adadr,
+           END OF ty_something.
+
+    DATA: my_data       TYPE ty_something,
+          expected_data TYPE ty_something.
+
+    DATA(source_json) = |\{"stjCd":"AP003","lgnm":"MS CORPORATION","nba":["Bonded Warehouse","EOU / STP / EHTP","Factory / Manufacturing","Input Service Distributor (ISD)","Leasing | &&
+                        |Business"],"adadr":[\{"addr":\{"bnm":"ELPHINSTONE BUILDING","pncd":"400001"\},"ntr":["Wholesale Business"]\}],"pradr":\{"addr":\{"bnm":"KATGARA HOUSE","pncd":"400006"\}| &&
+                        |,"ntr":["Wholesale Business"]\}\}|.
+
+    DATA(jak_data) = zcl_jak_data_in=>initialize_with_json( i_json = source_json ).
+    cl_abap_unit_assert=>assert_true( jak_data->get_status( )-is_valid ).
+    jak_data->fill( CHANGING c_my_data = my_data ).
+
+    expected_data = VALUE #( stj_cd = 'AP003'
+                             lgnm = 'MS CORPORATION'
+                             nba = VALUE #( ( `Bonded Warehouse` ) ( `EOU / STP / EHTP` ) ( `Factory / Manufacturing` ) ( `Input Service Distributor (ISD)` ) ( `Leasing Business` ) )
+                             adadr = VALUE #( ( addr = VALUE #( bnm = `ELPHINSTONE BUILDING` pncd = `400001` ) ntr = VALUE #( ( `Wholesale Business` ) ) ) )
+                             pradr = VALUE #( addr = VALUE #( bnm = `KATGARA HOUSE` pncd = `400006` ) ntr = VALUE #( ( `Wholesale Business` ) ) ) ).
+
+    cl_abap_unit_assert=>assert_equals( exp = expected_data act = my_data ).
+
   ENDMETHOD.
 
 ENDCLASS.
