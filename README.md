@@ -1,10 +1,18 @@
 # JAK 
 
+<hr />
+
+**Attention: This is sample code!** 
+
+This repository contains sample code which should not be used in production. It only shows the capabilities of [APACK - the ABAP package and dependency manager](https://blogs.sap.com/2019/05/06/introducing-apack-a-package-and-dependency-manager-for-abap/).
+
+<hr />
+
 **The JSON ABAP Konverter**
 
-Getting your JSON data converted into proper ABAP structures can be a pretty cumbersome experience, especially in the new ABAP Environment on the SAP Cloud Platform. There, you can't use some of the existing JSON converters/abstraction libraries to convert from ABAP to JSON or vice versa. The only ways are to use simple transformations or the whitelisted SXML library. These options are either inflexible or pretty complicated to handle - or even both...
+The JSON ABAP Konverter (JAK) is an alternative way of handling JSON on an ABAP system running on the SAP Cloud Platform. Keep in mind that this is just a demo. In production, you better use the officially supported libraries...
 
-The JSON ABAP Konverter (JAK) wants to make your life easier. Just hand your JSON raw data as string or encapsulated in an HTTP request to the JAK library and it will automatically transfer the JSON data to a compatible ABAP structure or internal table - and vice versa. No need to develop anything on your own - JAK will do the magic for you. Data structure matching is done based on the names of the table/structure rows and the JSON identifiers. The ABAP data field can contain more or less fields than the JSON which is used, JAK will automatically only copy the matching fields and silently ignore the rest.
+Just hand your JSON raw data as string or encapsulated in an HTTP request to the JAK library and it will automatically transfer the JSON data to a compatible ABAP structure or internal table - and vice versa. No need to develop anything on your own - JAK will do the magic for you. Data structure matching is done based on the names of the table/structure rows and the JSON identifiers. The ABAP data field can contain more or less fields than the JSON which is used, JAK will automatically only copy the matching fields and silently ignore the rest.
 
 ## Prerequisites
 Please make sure to fulfill the following requirements:
