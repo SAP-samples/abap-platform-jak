@@ -1,5 +1,7 @@
 # JAK 
 
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/abap-platform-jak)](https://api.reuse.software/info/github.com/SAP-samples/abap-platform-jak)
+
 <hr />
 
 **Attention: This is sample code!** 
