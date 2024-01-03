@@ -10,6 +10,10 @@ CLASS zcl_jak_data_in DEFINITION INHERITING FROM zcl_jak_data
                                    RETURNING VALUE(r_jak_data) TYPE REF TO zif_jak_data_in,
       initialize_with_json         IMPORTING i_json            TYPE string
                                    RETURNING VALUE(r_jak_data) TYPE REF TO zif_jak_data_in.
+
+    METHODS:
+      constructor IMPORTING i_raw_text       TYPE string
+                            i_current_status TYPE zif_jak_data=>ty_s_jak_status.
   PROTECTED SECTION.
   PRIVATE SECTION.
     DATA: data_service TYPE REF TO zcl_yy_data_service.
@@ -17,8 +21,6 @@ CLASS zcl_jak_data_in DEFINITION INHERITING FROM zcl_jak_data
                                        EXPORTING e_status       TYPE zif_jak_data=>ty_s_jak_status
                                                  e_raw_text     TYPE string.
     METHODS:
-      constructor IMPORTING i_raw_text       TYPE string
-                            i_current_status TYPE zif_jak_data=>ty_s_jak_status,
       fill_with_data_element IMPORTING i_current_data_element TYPE REF TO zif_yy_data_element
                              CHANGING  c_data_to_be_filled    TYPE any,
       fill_structure IMPORTING i_current_data_element TYPE REF TO zif_yy_data_element
@@ -97,7 +99,7 @@ CLASS zcl_jak_data_in IMPLEMENTATION.
     i_current_data_element->get_value( IMPORTING e_value = table_value ).
     WHILE line_index < lines( table_value ).
       INSERT INITIAL LINE INTO TABLE c_table_data ASSIGNING <table_line>.
-      ADD 1 TO line_index.
+      line_index += 1.
       READ TABLE table_value INTO table_line WITH TABLE KEY index = line_index.
       fill_with_data_element( EXPORTING i_current_data_element = table_line-element
                               CHANGING  c_data_to_be_filled    = <table_line> ).

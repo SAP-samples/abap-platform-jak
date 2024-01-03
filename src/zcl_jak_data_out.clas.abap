@@ -8,15 +8,16 @@ CLASS zcl_jak_data_out DEFINITION
     INTERFACES: zif_jak_data_out.
     CLASS-METHODS: initialize IMPORTING i_my_data         TYPE any
                               RETURNING VALUE(r_jak_data) TYPE REF TO zif_jak_data_out.
-  PROTECTED SECTION.
-  PRIVATE SECTION.
     METHODS: constructor IMPORTING i_data           TYPE any
                                    i_current_status TYPE zif_jak_data=>ty_s_jak_status.
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+
 ENDCLASS.
 
 
 
-CLASS ZCL_JAK_DATA_OUT IMPLEMENTATION.
+CLASS zcl_jak_data_out IMPLEMENTATION.
 
 
   METHOD constructor.
