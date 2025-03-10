@@ -4,18 +4,18 @@ CLASS zcl_jak_data DEFINITION ABSTRACT
 
   PUBLIC SECTION.
     INTERFACES: zif_jak_data.
+    METHODS: constructor IMPORTING i_current_status TYPE zif_jak_data=>ty_s_jak_status.
   PROTECTED SECTION.
     DATA: current_status TYPE zif_jak_data=>ty_s_jak_status,
           raw_text TYPE string.
     METHODS:
-      constructor IMPORTING i_current_status TYPE zif_jak_data=>ty_s_jak_status,
       invalidate_status IMPORTING i_status_message TYPE string,
       validate_status IMPORTING i_status_message TYPE string OPTIONAL.
 ENDCLASS.
 
 
 
-CLASS ZCL_JAK_DATA IMPLEMENTATION.
+CLASS zcl_jak_data IMPLEMENTATION.
 
 
   METHOD constructor.
